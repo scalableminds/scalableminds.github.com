@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
-	<info organisation="com.scalableminds" module="play-assets-improvements_2.10" revision="1.0-SNAPSHOT" status="integration" publication="20130429131416">
+	<info organisation="com.scalableminds" module="play-assets-improvements_2.10" revision="1.0-SNAPSHOT" status="integration" publication="20130429140200">
 		<description>
 		play-assets-improvements
 		</description>

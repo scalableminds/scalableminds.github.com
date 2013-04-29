@@ -1,0 +1,16 @@
+#!/bin/bash
+PROJECT=$1
+WHERE=$2
+ORG=com.scalableminds
+
+MVNREPO=/Users/tombocklisch/Documents/ScalableMinds/scalableminds.github.com
+
+play 'set organization:="$ORG"' clean publish-local
+
+cp -rv $(dirname $(which play))/repository/local/$ORG/$PROJECT* $MVNREPO/$WHERE/$ORG/
+
+cd $MVNREPO
+git pull origin master
+git add $WHERE/$ORG
+git ci -m "updated $PROJECT"
+git push origin master

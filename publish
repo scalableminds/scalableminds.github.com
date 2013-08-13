@@ -1,16 +1,24 @@
 #!/bin/bash
+
+if [ $# -lt 2 ]
+then
+  echo "Usage: $0 <project> <where (e.g. snapshots or releases)>"
+  exit 1
+fi
+
+# PROJECT SHOULD BE 
 PROJECT=$1
+# WHERE SHOULD BE 'releases' or 'snapshots'
 WHERE=$2
-ORG=com.scalableminds
 
 MVNREPO=/Users/tombocklisch/Documents/ScalableMinds/scalableminds.github.com
 
-play 'set organization:="$ORG"' clean publish-local
+sbt "project $PROJECT" 'set organization:="com.scalableminds"' clean publish-local
 
-cp -rv $(dirname $(which play))/repository/local/$ORG/$PROJECT* $MVNREPO/$WHERE/$ORG/
+cp -rv ~/.ivy2/local/com.scalableminds/$PROJECT* $MVNREPO/$WHERE/com.scalableminds/
 
 cd $MVNREPO
 git pull origin master
-git add $WHERE/$ORG
+git add $WHERE/com.scalableminds
 git ci -m "updated $PROJECT"
 git push origin master
